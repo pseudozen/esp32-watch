@@ -455,6 +455,20 @@ package type OT</description>
 <rectangle x1="0.7" y1="0.85" x2="1.2" y2="1.5" layer="51"/>
 <rectangle x1="-1.2" y1="0.85" x2="-0.7" y2="1.5" layer="51"/>
 </package>
+<package name="NRF24L01-MODULE" library_version="6" library_locally_modified="yes">
+<pad name="1" x="-1.27" y="3.81" drill="0.6" shape="square"/>
+<pad name="2" x="1.27" y="3.81" drill="0.6"/>
+<pad name="3" x="-1.27" y="1.27" drill="0.6"/>
+<pad name="4" x="1.27" y="1.27" drill="0.6"/>
+<pad name="5" x="-1.27" y="-1.27" drill="0.6"/>
+<pad name="6" x="1.27" y="-1.27" drill="0.6"/>
+<pad name="7" x="-1.27" y="-3.81" drill="0.6"/>
+<pad name="8" x="1.27" y="-3.81" drill="0.6"/>
+<wire x1="-2.54" y1="5.08" x2="-2.54" y2="-5.08" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-5.08" x2="2.54" y2="-5.08" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-5.08" x2="2.54" y2="5.08" width="0.127" layer="21"/>
+<wire x1="2.54" y1="5.08" x2="-2.54" y2="5.08" width="0.127" layer="21"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="ESP-WROOM-32" urn="urn:adsk.eagle:package:5408895/1" type="box" library_version="4">
@@ -617,6 +631,22 @@ package type OT</description>
 <wire x1="-10.16" y1="7.62" x2="-10.16" y2="-7.62" width="0.254" layer="94"/>
 <text x="-2.54" y="8.89" size="1.27" layer="95">&gt;NAME</text>
 <text x="-2.54" y="-10.16" size="1.27" layer="95">&gt;VALUE</text>
+</symbol>
+<symbol name="NRF24L01-MODULE" library_version="6" library_locally_modified="yes">
+<pin name="GND" x="-17.78" y="5.08" length="middle" direction="pwr"/>
+<pin name="3.3V" x="15.24" y="5.08" length="middle" direction="pwr" rot="R180"/>
+<pin name="CE" x="-17.78" y="2.54" length="middle"/>
+<pin name="CSN" x="15.24" y="2.54" length="middle" rot="R180"/>
+<pin name="SCK" x="-17.78" y="0" length="middle"/>
+<pin name="MOSI" x="15.24" y="0" length="middle" rot="R180"/>
+<pin name="MISO" x="-17.78" y="-2.54" length="middle"/>
+<pin name="IRQ" x="15.24" y="-2.54" length="middle" rot="R180"/>
+<wire x1="-12.7" y1="7.62" x2="-12.7" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-5.08" x2="10.16" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-5.08" x2="10.16" y2="7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="7.62" x2="-12.7" y2="7.62" width="0.254" layer="94"/>
+<text x="-12.192" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="-12.7" y="-7.62" size="1.27" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -835,6 +865,28 @@ package type OT</description>
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:20809/2"/>
 </package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="NRF24L01" library_version="6" library_locally_modified="yes">
+<gates>
+<gate name="G$1" symbol="NRF24L01-MODULE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="NRF24L01-MODULE">
+<connects>
+<connect gate="G$1" pin="3.3V" pad="2"/>
+<connect gate="G$1" pin="CE" pad="3"/>
+<connect gate="G$1" pin="CSN" pad="4"/>
+<connect gate="G$1" pin="GND" pad="1"/>
+<connect gate="G$1" pin="IRQ" pad="8"/>
+<connect gate="G$1" pin="MISO" pad="7"/>
+<connect gate="G$1" pin="MOSI" pad="6"/>
+<connect gate="G$1" pin="SCK" pad="5"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>
@@ -4529,6 +4581,8 @@ Source: AVX .. aphvc.pdf</description>
 <part name="C3" library="rcl" deviceset="C-US" device="C0805" value="1uF"/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
 <part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
+<part name="U$1" library="VanEagleLib" library_urn="urn:adsk.eagle:library:5408729" deviceset="NRF24L01" device=""/>
+<part name="GND7" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4578,6 +4632,8 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="C3" gate="G$1" x="86.36" y="35.56"/>
 <instance part="P+1" gate="1" x="15.24" y="53.34"/>
 <instance part="+3V1" gate="G$1" x="86.36" y="50.8"/>
+<instance part="U$1" gate="G$1" x="139.7" y="40.64"/>
+<instance part="GND7" gate="1" x="101.6" y="43.18"/>
 </instances>
 <busses>
 </busses>
@@ -4639,6 +4695,11 @@ Source: AVX .. aphvc.pdf</description>
 <junction x="223.52" y="160.02"/>
 <label x="236.22" y="160.02" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="MOSI"/>
+<wire x1="154.94" y1="40.64" x2="160.02" y2="40.64" width="0.1524" layer="91"/>
+<label x="160.02" y="40.64" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="IO19" class="0">
 <segment>
@@ -4651,6 +4712,11 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="121.92" y1="78.74" x2="139.7" y2="78.74" width="0.1524" layer="91"/>
 <label x="134.62" y="78.74" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="SCK"/>
+<wire x1="121.92" y1="40.64" x2="111.76" y2="40.64" width="0.1524" layer="91"/>
+<label x="111.76" y="40.64" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="IO18" class="0">
 <segment>
@@ -4662,6 +4728,11 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="JP3" gate="G$1" pin="3"/>
 <wire x1="121.92" y1="81.28" x2="139.7" y2="81.28" width="0.1524" layer="91"/>
 <label x="134.62" y="81.28" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="MISO"/>
+<wire x1="121.92" y1="38.1" x2="111.76" y2="38.1" width="0.1524" layer="91"/>
+<label x="111.76" y="38.1" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="IO5" class="0">
@@ -4749,6 +4820,11 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="JP2" gate="G$1" pin="1"/>
 <wire x1="96.52" y1="86.36" x2="81.28" y2="86.36" width="0.1524" layer="91"/>
 <label x="81.28" y="86.36" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="3.3V"/>
+<wire x1="154.94" y1="45.72" x2="160.02" y2="45.72" width="0.1524" layer="91"/>
+<label x="160.02" y="45.72" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="EN" class="0">
@@ -4966,6 +5042,12 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="GND2" gate="1" pin="GND"/>
 <pinref part="C1" gate="G$1" pin="2"/>
 <wire x1="22.86" y1="17.78" x2="22.86" y2="25.4" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="GND"/>
+<wire x1="121.92" y1="45.72" x2="116.84" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="45.72" x2="101.6" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="IO23/SDA" class="0">
